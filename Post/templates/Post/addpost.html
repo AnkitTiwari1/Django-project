@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add-Post</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+<style type="text/css">
+        html
+            {
+                scroll-behavior: smooth;
+            }
+
+        body
+            {
+                background-color:grey;
+            }
+
+        .navbar
+            {
+                background-color: lightgreen;
+                box-shadow: 0px 2px 5px black;
+                border: none;
+                border-bottom: 2px solid black;
+            }
+        
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Portfolio</a>
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#mydiv">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        <div class="collapse navbar-collapse" id="mydiv">
+        <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
+
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Academia</a></li>
+                <li><a href="">Skills</a></li>
+                <li><a href="">Projects</a></li>
+                <li><a href="">Contact</a></li>
+
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    Employee<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'Information:createemp' %}">Add Employee</a></li>
+                        <li><a href="{% url 'Information:emplist' %}">Employee Details</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    Blog<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'addpost' %}">Add Post</a></li>
+                        <li><a href="{% url 'allpost' %}">All Posts</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+     <div class="container">
+     	<div class="jumbotron" style="position: relative; top: 120px;" data-aos="fade-up-right">
+     		<form class="form-group" method="POST" action="{% url 'addpost2' %}" enctype="multipart/form-data">
+     			{% csrf_token %}
+     			<label>Title</label>
+				<input type="text" name="title" class="form-control">
+				<br>
+				<label>Author</label>
+     			<input type="text" name="author" class="form-control" value="{{user}}">
+     			<br>
+     			<label>Post</label>
+     			<textarea row="20" columns="100" name="post" class="form-control"></textarea><br>
+     			<label>File</label>
+     			<input type="file" name="file" class="form-control"><br>
+     			<input type="submit" class="btn btn-danger" value="Post">
+     		</form>
+     	</div>
+    </div>
+<script>
+  AOS.init(
+    );
+</script>   
+</body>
+</html>

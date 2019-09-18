@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body><nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Comapny</a>
+            </div>
+        <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
+
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="">Conatct</a></li>
+                <li style="margin-left:600px;"><a href="{% url 'logout'%}">Logout</a></li>
+    {% endif %}
+        </ul>
+        </div>
+    </nav>
+
+    
+    <div class="container">
+        <div class="jumbotron">
+            <form method="POST" action="{% url 'Information:update2' pk=data.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name1" class="form-control" value="{{data.ename}}">
+                <div class="form-group">
+                    <label>Mobile</label>
+                    <input type="text" name="mob" class="form-control" pattern="\d{10}" title="must be 10 digit" value="{{data.emob}}">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" 
+                    value="{{data.email}}">
+                <div class="form-group">
+                    <label>Aadhar</label>
+                    <input type="number" name="aadhar" class="form-control" 
+                    value="{{data.eaadhar}}">
+                <div class="form-group">
+                    <label>Salary</label>
+                    <input type="number" name="salary" class="form-control" 
+                    value="{{data.esalary}}"><br>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Update">
+            </form>
+</body>
+</html>

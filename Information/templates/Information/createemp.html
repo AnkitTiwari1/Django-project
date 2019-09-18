@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+     <style type="text/css">
+        html
+            {
+                scroll-behavior: smooth;
+            }
+
+        body
+            {
+                background-color:grey;
+            }
+
+        .navbar
+            {
+                background-color: lightgreen;
+                box-shadow: 0px 2px 5px black;
+                border: none;
+                border-bottom: 2px solid black;
+            }
+        
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Portfolio</a>
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#mydiv">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        <div class="collapse navbar-collapse" id="mydiv">
+        <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
+
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Academia</a></li>
+                <li><a href="">Skills</a></li>
+                <li><a href="">Projects</a></li>
+                <li><a href="">Contact</a></li>
+
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    Employee<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'Information:createemp' %}">Add Employee</a></li>
+                        <li><a href="{% url 'Information:emplist' %}">Employee Details</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                    Blog<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'addpost' %}">Add Post</a></li>
+                        <li><a href="{% url 'allpost' %}">All Posts</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" >
+        <div class="jumbotron" style="position: relative; top:120px;" data-aos="zoom-in-up">
+            <form method="POST" action="{% url 'Information:createemp2' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name1" class="form-control">
+                <div class="form-group">
+                    <label>Mobile</label>
+                    <input type="text" name="mob" class="form-control" pattern="\d{10}" title="must be 10 digit">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control">
+                <div class="form-group">
+                    <label>Aadhar</label>
+                    <input type="number" name="aadhar" class="form-control">
+                <div class="form-group">
+                    <label>Salary</label>
+                    <input type="number" name="salary" class="form-control"><br>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Create">
+            </form>
+
+<script>
+  AOS.init(
+    );
+</script>
+</body>
+</html>

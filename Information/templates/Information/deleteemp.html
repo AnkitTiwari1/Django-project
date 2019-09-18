@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delete Employee</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body style="background-color:lightpink;">
+      <center>
+        <div class="container">
+          <div class="jumbotron">
+            <h3>Are you sure you want to delete..?? </h3>
+            <a href="{% url 'Information:delete' pk=data.id %}" class="btn btn-info">OK</a>
+            <a href="{% url 'Information:emplist'%}" class="btn btn-info">Cancel</a>
+
+
+
+      	
+
+      </center>
+</body>
+</html>
